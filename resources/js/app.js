@@ -5,7 +5,6 @@ import "./bootstrap";
 // import "preline";
 
 document.addEventListener("livewire:navigated", () => {
-
     if (localStorage.getItem("color-theme") === "dark") {
         document.documentElement.classList.add("dark");
         initFlowbite();
