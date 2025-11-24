@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\api\jsk;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Dedoc\Scramble\Attributes\Group;
 
 #[Group('JSK Education Management (CREATE, UPDATE, DELETE)')]
@@ -29,6 +30,9 @@ class JskEducationController extends Controller
                 'message' => 'Profile not found',
             ], 404);
         }
+
+        $delete = User::findOrFail($request->user()->id);
+        $delete->education()->delete();
 
         $education = $profile->education()->createMany($validated['data']);
 
