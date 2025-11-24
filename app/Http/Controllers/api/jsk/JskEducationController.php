@@ -31,8 +31,7 @@ class JskEducationController extends Controller
             ], 404);
         }
 
-        $delete = User::findOrFail($request->user()->id);
-        $delete->education()->delete();
+        User::findOrFail($request->user()->id)->jskProfile->education()->delete();
 
         $education = $profile->education()->createMany($validated['data']);
 
