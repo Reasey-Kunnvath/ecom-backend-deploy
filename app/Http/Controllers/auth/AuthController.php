@@ -39,13 +39,13 @@ class AuthController
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if (! $user->hasVerifiedEmail()) {
-                $this->generateMail($user);
+            // if (! $user->hasVerifiedEmail()) {
+            //     $this->generateMail($user);
 
-                return response()->json([
-                    'message' => 'Please verify your email. A new verification link has been sent to your inbox.',
-                ]);
-            }
+            //     return response()->json([
+            //         'message' => 'Please verify your email. A new verification link has been sent to your inbox.',
+            //     ]);
+            // }
 
             $token = $this->generate_token($user);
 
@@ -108,10 +108,11 @@ class AuthController
             'account_type' => 'email',
         ]);
 
-        $this->generateMail($user);
+        // $this->generateMail($user);
 
         return response()->json([
-            'message' => 'Registration successful. Please check your email for verification link for account activation.',
+            'message' => 'Registration successful!',
+            // 'message' => 'Registration successful. Please check your email for verification link for account activation.',
         ]);
     }
 

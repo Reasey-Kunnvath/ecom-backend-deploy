@@ -131,6 +131,11 @@ class ServicePlan extends Component
 
         $features = array_filter($this->plan_features, fn($f) => trim($f) !== '');
 
+        if(empty($features)){
+            $this->sweetToastError('Please add at least one feature');
+            return;
+        }
+
         $data = $this->only([
             'plan_code',
             'plan_name',
